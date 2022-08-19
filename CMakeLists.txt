@@ -11,7 +11,7 @@ set(CMAKE_TOOLCHAIN_FILE
     CACHE FILEPATH "Default toolchain"
     )
 
-include("cmake/Hunter/init.cmake")
+include("cmake/3rdparty_utils.cmake")
 
 cmake_policy(SET CMP0048 NEW)
 project(soralog VERSION 0.0.7 LANGUAGES CXX)
