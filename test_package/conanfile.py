@@ -1,13 +1,28 @@
-from conans import ConanFile, CMake
+import os
+
+from conan import ConanFile
+from conan.tools.cmake import CMake, cmake_layout
+
 
 class SoralogTestConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
-    generators = "cmake"
+    # VirtualBuildEnv and VirtualRunEnv can be avoided if "tools.env.virtualenv:auto_use" is defined
+    # (it will be defined in Conan 2.0)
+    generators = "CMakeDeps", "CMakeToolchain", "VirtualBuildEnv", "VirtualRunEnv"
+    apply_env = False
+    test_type = "explicit"
+
+    def requirements(self):
+        self.requires(self.tested_reference_str)
 
     def build(self):
         cmake = CMake(self)
         cmake.configure()
         cmake.build()
 
+    def layout(self):
+        cmake_layout(self)
+
     def test(self):
-        self.run("./packagetest")
+        cmd = os.path.join(self.cpp.build.bindirs[0], "example")
+        self.run(cmd, env="conanrun")
