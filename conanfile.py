@@ -23,4 +23,5 @@ class SoralogConan(ConanFile):
       return cmake
 
    def package_info(self):
+      self.cpp_info.libdirs = ["lib/soralog"]
       self.cpp_info.libs = ["soralog"]
