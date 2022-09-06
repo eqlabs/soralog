@@ -6,7 +6,9 @@ class SoralogConan(ConanFile):
    settings = "os", "compiler", "build_type", "arch"
    requires = "fmt/6.1.2", "yaml-cpp/0.7.0"
    generators = "cmake"
-   exports_sources = "CMakeLists.txt", "cmake/*", "example/*", "include/*", "src/*", "test/*"
+   # We don't use '/' after '..' as a workaround for
+   # https://github.com/conan-io/conan/issues/2675 issue
+   exports_sources = "../CMakeLists.txt", "../cmake*", "../example*", "../include*", "../src*", "../test*"
 
    def build(self):
       cmake = self._configure_cmake()
