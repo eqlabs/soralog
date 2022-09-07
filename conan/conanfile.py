@@ -1,4 +1,4 @@
-from conans import ConanFile, CMake, tools
+from conans import ConanFile, CMake
 
 class SoralogConan(ConanFile):
    name = "soralog"
@@ -26,4 +26,4 @@ class SoralogConan(ConanFile):
 
    def package_info(self):
       self.cpp_info.libdirs = ["lib/soralog"]
-      self.cpp_info.libs = tools.collect_libs(self)
+      self.cpp_info.libs = ["soralog"]
