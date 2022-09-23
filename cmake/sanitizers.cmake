@@ -1,3 +1,18 @@
+include(${CMAKE_CURRENT_LIST_DIR}/check_san_option.cmake)
+
+check_san_option("ASAN")
+set(ASAN ${SAN_OPTION})
+check_san_option("LSAN")
+set(LSAN ${SAN_OPTION})
+check_san_option("MSAN")
+set(MSAN ${SAN_OPTION})
+check_san_option("TSAN")
+set(TSAN ${SAN_OPTION})
+check_san_option("UBSAN")
+set(UBSAN ${SAN_OPTION})
+
+message(STATUS "soralog: SAN=${LSAN}")
+
 if(ASAN)
   print("Address Sanitizer is enabled")
   include(${CMAKE_CURRENT_LIST_DIR}/toolchain/flags/sanitize_address.cmake)
