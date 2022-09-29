@@ -31,14 +31,18 @@ option(MSAN         "Enable memory sanitizer"                     OFF)
 option(TSAN         "Enable thread sanitizer"                     OFF)
 option(UBSAN        "Enable UB sanitizer"                         OFF)
 
+# One flag to set a given sanitizer - will be passed to dependencies
+option(SAN          "Enable sanitizer (ASAN/LSAN/MSAN/TSAN/UBSAN)" OFF)
+
+
 # the property is out of "if TESTING" scope due to addtest func is out too
 set_property(GLOBAL PROPERTY TEST_TARGETS)
 
+include(cmake/sanitizers.cmake)
 include(cmake/functions.cmake)
 include(cmake/toolchain/compiler.cmake)
 include(cmake/toolchain/cxx17.cmake)
 include(cmake/dependencies.cmake)
-include(cmake/sanitizers.cmake)
 
 if(CLANG_TIDY)
     # Must be included before creating any target
