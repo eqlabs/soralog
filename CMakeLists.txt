@@ -25,7 +25,14 @@ option(CLANG_TIDY   "Enable clang-tidy checks during compilation" OFF)
 option(COVERAGE     "Enable generation of coverage info"          OFF)
 
 # Sanitizers enables only for this project, and will be disabled for dependencies
-option(SAN         "Enable sanitizer"                            OFF)
+option(ASAN         "Enable address sanitizer"                    OFF)
+option(LSAN         "Enable leak sanitizer"                       OFF)
+option(MSAN         "Enable memory sanitizer"                     OFF)
+option(TSAN         "Enable thread sanitizer"                     OFF)
+option(UBSAN        "Enable UB sanitizer"                         OFF)
+
+# One flag to set a given sanitizer - will be passed to dependencies
+option(SAN          "Enable sanitizer (ASAN/LSAN/MSAN/TSAN/UBSAN)" OFF)
 
 
 # the property is out of "if TESTING" scope due to addtest func is out too
